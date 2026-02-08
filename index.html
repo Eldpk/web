@@ -2,194 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Weather Data Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paul Eldridge, Meteorology Student</title>
     <style>
-        body { font-family: sans-serif; padding: 20px; background: #f4f7f6; }
-        .controls { margin-bottom: 20px; display: flex; gap: 10px; }
-        input { padding: 8px; width: 300px; }
-        button { padding: 8px 15px; cursor: pointer; width: 160px; white-space: nowrap;}
-        .link-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
-        .card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; }
-        a { text-decoration: none; color: #0077cc; font-weight: bold; }
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: #f4f7f6;
+            color: #333;
+        }
+        h1 { margin-bottom: 10px; }
+        p { margin-bottom: 30px; color: #666; }
+
+        .entry-btn {
+            padding: 15px 40px;
+            background-color: #0077cc;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 8px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s, background-color 0.2s;
+        }
     </style>
-</head>
+</head>    
 <body>
 
-    <h2>Weather Resources</h2>
+    <h1>Paul Eldridge, Meteorology Student</h1>
+    <p>More coming soon...</p>
 
-    <div class="controls">
-    <input type="text" id="searchInput" placeholder="Search..." onkeyup="filterLinks()">
-    <button id="sortBtn" onclick="toggleSort()">Sort by Type</button>
-</div>
-
-<div class="link-grid" id="linkGrid">
-    <div class="card" data-name="SPC Mesoanalysis" data-type="Observations">
-    <a href="https://www.spc.noaa.gov/exper/mesoanalysis/" target="_blank" rel="noopener noreferrer">SPC Mesoanalysis</a>
-    <br><small>Type: Observations</small>
-    </div>
-
-    <div class="card" data-name="COD Models" data-type="Models">
-    <a href="https://weather.cod.edu/forecast" target="_blank" rel="noopener noreferrer">COD Models</a>
-    <br><small>Type: Models</small>
-    </div>
-
-    <div class="card" data-name="Pivotal Weather" data-type="Models">
-    <a href="https://www.pivotalweather.com/model.php" target="_blank" rel="noopener noreferrer">Pivotal Weather</a>
-    <br><small>Type: Models</small>
-    </div>
-
-    <div class="card" data-name="NWS LOT" data-type="Observations">
-    <a href="https://www.weather.gov/lot/" target="_blank" rel="noopener noreferrer">NWS LOT</a>
-    <br><small>Type: Observations</small>
-    </div>
-
-    <div class="card" data-name="Climate Data Online" data-type="Data">
-    <a href="https://www.ncei.noaa.gov/cdo-web/" target="_blank" rel="noopener noreferrer">Climate Data Online</a>
-    <br><small>Type: Data</small>
-    </div>
-
-    <div class="card" data-name="Triton" data-type="Coding">
-    <a href="https://triton.niu.edu" target="_blank" rel="noopener noreferrer">Triton</a>
-    <br><small>Type: Coding</small>
-    </div>
-
-    <div class="card" data-name="BAMS" data-type="Journals">
-    <a href="https://www.ametsoc.org/ams/publications/journals/bulletin-of-the-american-meteorological-society-bams/" target="_blank" rel="noopener noreferrer">BAMS</a>
-    <br><small>Type: Journals</small>
-    </div>
-
-    <div class="card" data-name="COD Satellite" data-type="Observations">
-    <a href="https://weather.cod.edu/satrad/" target="_blank" rel="noopener noreferrer">COD Satellite</a>
-    <br><small>Type: Observations</small>
-    </div>  
-
-    <div class="card" data-name="COD Analysis" data-type="Observations">
-    <a href="https://weather.cod.edu/analysis/" target="_blank" rel="noopener noreferrer">COD Analysis</a>
-    <br><small>Type: Observations</small>
-    </div>
-
-    <div class="card" data-name="COD Exper Text" data-type="Observations">
-    <a href="https://weather.cod.edu/text/exper" target="_blank" rel="noopener noreferrer">COD Exper Text</a>
-    <br><small>Type: Observations</small>
-    </div>
-
-    <div class="card" data-name="Drought Monitor" data-type="Observations">
-    <a href="https://droughtmonitor.unl.edu/" target="_blank" rel="noopener noreferrer">Drought Monitor</a>
-    <br><small>Type: Observations</small>
-    </div>
-
-    <div class="card" data-name="COD Radar" data-type="Observations">
-    <a href="https://weather.cod.edu/satrad/nexrad/" target="_blank" rel="noopener noreferrer">COD Radar</a>
-    <br><small>Type: Observations</small>
-    </div>
-
-    <div class="card" data-name="MesoWest" data-type="Observations">
-    <a href="https://mesowest.utah.edu/" target="_blank" rel="noopener noreferrer">MesoWest</a>
-    <br><small>Type: Observations</small>
-    </div>
-
-    <div class="card" data-name="Tropical Tidbits" data-type="Models">
-    <a href="https://www.tropicaltidbits.com/" target="_blank" rel="noopener noreferrer">Tropical Tidbits</a>
-    <br><small>Type: Models</small>
-    </div>
-
-    <div class="card" data-name="Project Pythia" data-type="Coding">
-    <a href="https://cookbooks.projectpythia.org/" target="_blank" rel="noopener noreferrer">Project Pythia</a>
-    <br><small>Type: Coding</small>
-    </div>
-
-    <div class="card" data-name="Xarray" data-type="Coding">
-    <a href="https://docs.xarray.dev/en/stable/user-guide/index.html" target="_blank" rel="noopener noreferrer">Xarray</a>
-    <br><small>Type: Coding</small>
-    </div>
-
-    <div class="card" data-name="SPC Main Page" data-type="Observations">
-    <a href="www.spc.noaa.gov" target="_blank" rel="noopener noreferrer">SPC Main Page</a>
-    <br><small>Type: Observations</small>
-    </div>
-    <div class="card" data-name="Mesoanalysis Archive" data-type="Observations">
-    <a href="https://www.spc.noaa.gov/exper/ma_archive/" target="_blank" rel="noopener noreferrer">Mesoanalysis Archive</a>
-    <br><small>Type: Observations</small>
-    </div>
-
-    <div class="card" data-name="Gridded Snowfall" data-type="Observations">
-    <a href="https://www.nohrsc.noaa.gov/snowfall_v2/" target="_blank" rel="noopener noreferrer">Gridded Snowfall</a>
-    <br><small>Type: Observations</small>
-    </div>
-
-    <div class="card" data-name="IA State Meteogram" data-type="Models">
-    <a href="https://www.meteor.iastate.edu/~ckarsten/bufkit/image_loader.phtml" target="_blank" rel="noopener noreferrer">IA State Meteogram</a>
-    <br><small>Type: Models</small>    
-    </div>
-
-    <div class="card" data-name="Bufkit Data" data-type="Models">
-    <a href="https://www.meteo.psu.edu/bufkit/CONUS_NAM_18.html" target="_blank" rel="noopener noreferrer">Bufkit Data</a>
-    <br><small>Type: Models</small>
-    </div>
-
-    <div class="card" data-name="WPC SFC Zoom" data-type="Observations">
-    <a href="https://www.wpc.ncep.noaa.gov/html/sfc-zoom.php" target="_blank" rel="noopener noreferrer">WPC SFC Zoom</a>
-    <br><small>Type: Observations</small>   
-    </div>
-
-    <div class="card" data-name="NOAA AWS" data-type="Data">
-    <a href="https://registry.opendata.aws/collab/noaa/" target="_blank" rel="noopener noreferrer">NOAA AWS</a>
-    <br><small>Type: Data</small>
-    </div>
-
-    <div class="card" data-name="Victor's Mapwall" data-type="Observations">
-    <a href="https://atlas.niu.edu/mapwall/" target="_blank" rel="noopener noreferrer">Victor's Mapwall</a>
-    <br><small>Type: Observations</small>
-    </div>
-
+    <a href="/links" class="entry-btn">Weather Links</a>
     
-
-
-    </div>
-</div>
-
-<script>
-    // Set the initial state to 'name' so that the first call to toggleSort() 
-// switches it to 'type' and performs the initial sort.
-let currentSort = 'name'; 
-
-function filterLinks() {
-    let input = document.getElementById('searchInput').value.toLowerCase().trim();
-    let cards = document.querySelectorAll('.card');
-
-    cards.forEach(card => {
-        let name = card.getAttribute('data-name').toLowerCase().trim();
-        let type = card.getAttribute('data-type').toLowerCase().trim();
-        card.style.display = (name.includes(input) || type.includes(input)) ? "" : "none";
-    });
-}
-
-function toggleSort() {
-    let grid = document.getElementById('linkGrid');
-    let btn = document.getElementById('sortBtn');
-    let cards = Array.from(grid.querySelectorAll('.card'));
-
-    if (currentSort === 'name') {
-        // Sort by Type first, then Name
-        cards.sort((a, b) => {
-            let typeCompare = a.getAttribute('data-type').localeCompare(b.getAttribute('data-type'));
-            return typeCompare !== 0 ? typeCompare : a.getAttribute('data-name').localeCompare(b.getAttribute('data-name'));
-        });
-        currentSort = 'type';
-        btn.innerText = "Sort Alphabetically";
-    } else {
-        // Sort Alphabetically by Name
-        cards.sort((a, b) => a.getAttribute('data-name').localeCompare(b.getAttribute('data-name')));
-        currentSort = 'name';
-        btn.innerText = "Sort by Type";
-    }
-
-    // Clear and re-append sorted cards
-    grid.innerHTML = "";
-    cards.forEach(card => grid.appendChild(card));
-}
-
-toggleSort();
-</script>
 </body>
 </html>
